@@ -1,6 +1,6 @@
 # 如何在canvas内部元素上监听事件
 
-完整代码：[链接](https://github.com/wstreet/canvas-event)<br />
+完整代码：[链接](https://github.com/wstreet/canvas-event)<br />Demo：[链接](https://wstreet.github.io/canvas-event/)<br />
 <br />首先canvas绘图是要有一个 `<canvas></canvas>` 标签的，然后使用脚本取绘制。`<canvas></canvas>`  就是一个dom节点，所以我们可以在这个节点上监听一些事件，比如click。但是这样存在问题，点击画布中的任意一个地方，都会触发click事件，现在我只想点击画布中的rect时才触发click事件，该怎么做呢？其实很简单，通过以下几个步骤就可以实现。
 
 > 这里只是用click事件和rect图形举例，其他事件和shape可以用同样的方法实现。
