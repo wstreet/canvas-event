@@ -15,7 +15,7 @@ class Rect extends Event {
     }
 
     isEventInRegion(clientX, clientY) {
-        const point = this.getEventPosition(clientX, clientY);
+        const point = this.getEventPosition(clientX, clientY); // 计算基于canvas坐标系的坐标值
         const { x, y, width, height } = this.config
         if (
             x < point.x 
