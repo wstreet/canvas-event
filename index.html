@@ -9,7 +9,7 @@
         #msg {
             width: 50%;
             display: inline-block;
-            height: 300px;
+            height: 90vh;
             overflow: auto;
         }
     </style>
@@ -19,12 +19,20 @@
     <canvas id="canvas" height="300"></canvas>
     <div id="msg"></div>
 </body>
-
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.core.js"></script>
 <script type="module">
-    import Canvas from './Canvas.js'
-    const canvas = new Canvas(document.querySelector('#canvas'))
+    import Canvas from './canvas.js'
     const msgContainer = document.querySelector('#msg')
-    const rect1 = canvas.rect({
+
+    function log(text) {
+        const textNode = document.createTextNode(text)
+        const div = document.createElement('div')
+        div.appendChild(textNode)
+        msgContainer.appendChild(div)
+    }
+
+    const canvas = new Canvas(document.querySelector('#canvas'))
+    const rect1 = canvas.addShape('rect', {
         x: 0,
         y: 0,
         width: 150,
@@ -33,15 +41,12 @@
     })
 
     rect1.on('click', (event) => {
-        console.log('rect1 click')
-
-        const text = document.createTextNode('rect1 click')
-        const div = document.createElement('div')
-        div.appendChild(text)
-        msgContainer.appendChild(div)
+        console.log(event)
+        log('rect1 click')
     })
 
-    const rect2 = canvas.rect({
+
+    const rect2 = canvas.addShape('rect', {
         x: 0,
         y: 50,
         width: 100,
@@ -49,14 +54,29 @@
         fillStyle: '#333'
     })
 
-    rect2.on('mousemove', (event) => {
-        console.log('rect2 mousemove')
-        const text = document.createTextNode('rect2 mousemove')
-        const div = document.createElement('div')
-        div.appendChild(text)
-        msgContainer.appendChild(div)
+    rect2.on('mousedown', (event) => {
+        log('rect2 mousedown')
     })
 
+    rect2.on('mouseup', () => {
+        log('rect2 mouseup')
+    })
+
+
+    canvas.addShape('polygon', {
+        points: [
+            [40,  110],
+            [60, 180],
+            [40, 200],
+            [10, 180]
+        ],
+        fillStyle: '#ccc'
+    })
+
+
+    canvas.on('click', () => {
+        log('canvas click')
+    })
 
 
     canvas.draw()
