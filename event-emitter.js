@@ -58,14 +58,13 @@ class Event {
     if (this._listener[type]) {
       const listeners = this._listeners[type];
       for (let i = 0, len = listeners.length; i < len; i++) {
-          if (listeners[i] === listener) {
+          if (listeners[i] === listeners) {
               listeners.splice(i, 1);
           }
       }
     }
 
   }
-
 
 }
 
